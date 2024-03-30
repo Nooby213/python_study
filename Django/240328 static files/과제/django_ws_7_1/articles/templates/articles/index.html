@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<a href="{% url "articles:create" %}">[CREATE]</a>
+<div>
+<img src="{% static "smile.png" %}" alt="#">
+</div>
+{% for article in articles %}
+<a href="{% url "articles:detail" article.pk%}">{{  article.title  }}</a>
+<hr>
+{% endfor %}
+{% endblock content %}

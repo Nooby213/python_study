@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>게시글 수정 페이지</h1>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.management_form }}
+    {% for f in form %}
+    {% if f.name == 'is_public' %}
+    <div class="border border-danger border-5" style="width: max-content">{{f.name}}{{  f  }}</div>
+    {% else %}
+    <div>{{f.name}}{{  f  }}</div>
+    {% endif %}
+
+    {% endfor %}
+    <input type="submit" value="UPDATE">
+  </form>
+  <a href="{% url 'articles:detail' article.pk %}">[BACK]</a>
+{% endblock content %}
+

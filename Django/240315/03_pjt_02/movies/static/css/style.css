@@ -1,0 +1,25 @@
+.nav-img {
+  width: 100px;
+  height: 50px;
+}
+
+.nav-back {
+  background-color: black;
+  justify-content: space-between;
+  }
+
+.color-white {
+  color: white;
+}
+
+.cent {
+  display: flex;
+  justify-content: center;
+}
+
+.auto-size {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+  height: auto;
+}

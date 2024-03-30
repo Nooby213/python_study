@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+<h1>Create Page</h1>
+<hr>
+<form action="" method="POST" class="container d-flex flex-column">
+  {% csrf_token %}
+  {% comment %} 
+    ModelForm, Form이 만들어주는건
+    사용자가 데이터를 입력할 input tag만 만들어줌
+  {% endcomment %}
+  {{  form  }}
+  <input type="submit" value="CREATE">
+</form>
+</div>
+{% endblock content %}
+
