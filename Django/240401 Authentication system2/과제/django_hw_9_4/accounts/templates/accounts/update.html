@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<p><a href="{% url "accounts:update" %}">[Update]</a></p>
+<form action="{% url "accounts:logout" %}" method='POST'>
+  {% csrf_token %}
+  <input type="submit" value="LOGOUT">
+</form>
+<form action="{% url "accounts:update" %}" method="POST">
+  {% csrf_token %}
+  {{  form.as_p  }}
+  <input type="submit" value="Update">
+</form>
+{% endblock content %}
