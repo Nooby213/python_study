@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>INDEX PAGE</h1>
+{% for movie in movies %}
+<div class="mt-3 ps-3 pt-2 border rounded">
+  {{ movie.title }}
+  <hr>
+  <a href="{% url "movies:detail" movie.pk%}">DETAIL</a>
+  <form action="">
+    <input type="submit" value='좋아요'>
+  </form>
+</div>
+{% endfor %}
+{% endblock content %}

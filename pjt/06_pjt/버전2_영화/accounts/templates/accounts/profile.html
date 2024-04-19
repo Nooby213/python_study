@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ person.username }}님의 프로필</h1>
+  <hr>
+  <p>팔로워: {{person.followers.all|length}}</p>
+  <p>팔로잉: {{ person.followings.all|length}}</p>
+  <form action="{% url "accounts:follow"  person.pk%}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="언팔로우">
+  </form>
+
+  
+  <hr>
+  <h1>작성한 영화 목록</h1>
+  <ul>
+    {% for movie in person.movie_set.all %}
+      <li>{{ movie.title }}</li>
+    {% endfor %}
+  </ul>
+  <hr>
+  <h1>좋아요 누른 영화 목록</h1>
+    
+  <hr>
+{% endblock content %}
