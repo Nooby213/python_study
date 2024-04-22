@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body style="height: 1200px;">
+  <p>hi
+  </p>
+  <script>
+    const body = document.querySelector('body')
+    body.addEventListener('click', function () {
+      console.log(event)
+      console.log('body clicked!!')
+    })
+    body.addEventListener('contextmenu', function () {
+      event.preventDefault()
+    })
+    body.addEventListener('selectstart', function () {
+      event.preventDefault()
+    })
+    body.addEventListener('copy', function () {
+      const selection = window.getSelection()
+      const copiedText = selection.toString()
+
+      const addText = '어떤 내용추가'
+      const result = copiedText + addText
+      console.log(result)
+
+      evnet.clipboardData.setData('text/plain', result)
+      event.preventDefault()
+    })
+    body.addEventListener('selectstart', function () {
+      event.preventDefault()
+    })
+    </script>
+</body>
+</html>

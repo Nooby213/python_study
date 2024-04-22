@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    table {
+      width: 100%;
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    td {
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    .theme-color {
+      background-color: crimson;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <td>Lorem, ipsum dolor1.</td>
+      <td>Lorem, ipsum dolor2.</td>
+      <td>Lorem, ipsum dolor3.</td>
+    </tr>
+    <tr>
+      <td>Lorem, ipsum dolor4.</td>
+      <td>Lorem, ipsum dolor5.</td>
+      <td>Lorem, ipsum dolor6.</td>
+    </tr>
+    <tr>
+      <td>Lorem, ipsum dolor7.</td>
+      <td>Lorem, ipsum dolor8.</td>
+      <td>Lorem, ipsum dolor9.</td>
+    </tr>
+  </table>
+
+  <script>
+    const tableTag = document.querySelector('table')
+    tableTag.addEventListener('click', function(event) {
+      // console.log(event.target)
+      // console.log(event.currentTarget)
+      // console.log(event.target.tagName)
+      if (event.target.tagName === 'TD') {
+        const td = event.target
+        td.classList.toggle('theme-color')
+      }
+    })
+  </script>
+</body>
+
+</html>
