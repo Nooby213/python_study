@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 import requests
 from django.http import JsonResponse
 from .models import DepositOptions, DepositProducts
-from .serializer import DepositOptionsSerializer, DepositProductsSerializer
+from .serializer import DepositOptionsSerializer, DepositProductsSerializer, DepositOptionsListSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -77,8 +77,8 @@ def deposit_products(request):
 
 @api_view(['GET'])
 def deposit_product_options(request, fin_prdt_cd):
-  product = DepositProducts.objects.get(fin_prdt_cd=fin_prdt_cd)
-  serializer = DepositProductsSerializer(product)
+  products = DepositOptions.objects.filter(fin_prdt_cd=fin_prdt_cd)
+  serializer = DepositOptionsListSerializer(products, many=True)
   return Response(serializer.data)
 
 @api_view(['GET'])
