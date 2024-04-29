@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p :style="styleObject" >Let's change the font style!</p>
+    <hr>
+    <p>색상 목록</p>
+    <ul>
+      <li>red</li>
+      <li>blue</li>
+    </ul>
+
+    <p>글꼴 목록</p>
+    <ul>
+      <li>fantasy</li>
+      <li>cursive</li>
+      <li>Impact</li>
+    </ul>
+    <hr>
+
+    <form>
+      <label for="color">색 입력 : </label>
+      <input type="text" id="color" v-model="colorType">
+      <br>
+      <label for="font">글꼴 입력 : </label>
+      <input type="text" id="font" v-model="fontType">
+      <br>
+      <button @click.prevent="changeStyle">변경!</button>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+  const { createApp, ref } = Vue
+  const app = createApp({
+    setup() {
+      const colorType = ref('')
+      const fontType = ref('')
+      const styleObject = ref({
+        color : colorType,
+        fontFamily : fontType
+      })
+
+  function changeStyle() {
+    // 둘 다 값이 있는 경우
+    if (colorType.value && fontType.value) {
+    styleObject.value = {
+      color: colorType.value,
+      fontFamily: fontType.value
+    }
+
+    // 색상만 있는 경우
+  } else if (colorType.value && !fontType.value) {
+    styleObject.value = {
+      color: colorType.value
+    }
+    colorType.value = ''
+    // 글꼴만 있는 경우
+  } else if (!colorType.value && fontType.value) {
+    styleObject.value = {
+      fontFamily: fontType.value
+    }
+    fontType.value = ''
+  }
+  colorType.value = ''
+  fontType.value = ''
+}
+
+
+      return {
+        colorType,
+        fontType,
+        styleObject,
+        changeStyle
+      }
+    }
+  })
+  app.mount('#app')
+  </script>
+</body>
+</html>
