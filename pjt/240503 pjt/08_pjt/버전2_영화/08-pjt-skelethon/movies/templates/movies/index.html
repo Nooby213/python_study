@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Movies</h1>
+
+  <select id="genre-select">
+    <option value="">장르를 선택하시오</option>
+    {% for genre in genres %}
+    <option value="{{ genre.name }}">{{ genre.name }}</option>
+    {% endfor %}
+    {% for genre in genres %}
+    <option value="{{ movies.pk}}">{{ movie.name }}</option>
+    {% endfor %} 
+  </select>
+    
+  <div id="movie-list">
+    <!-- 영화 목록이 여기에 표시됩니다. -->
+    {% for movie in movies %}
+      <ul>
+        <li>{{ movie.title }}</li>
+      </ul>
+    {% endfor %}
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js'></script>
+
+  <script>
+    const genreSelect = document.querySelector('#genre-select');
+
+    genreSelect.addEventListener('change', function() {
+      const genre = this.value;
+      const url = `/movies/filter-genre/?genre=${genre}`
+
+      axios.get(url)
+        .then(response => {
+          const movieList = document.getElementById('movie-list');
+          movieList.innerHTML = '' // 기존의 영화 목록을 초기화
+
+          response.data.movies.forEach(function(movie) {
+            const listItem = document.createElement('li')
+            listItem.textContent = movie.title
+            movieList.appendChild(listItem)
+          })
+        })
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    })
+  </script>
+{% endblock %}
